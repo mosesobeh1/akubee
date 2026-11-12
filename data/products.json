@@ -1,0 +1,382 @@
+{
+ "categories": [
+  {
+   "slug": "car-wash",
+   "name": "Car wash products"
+  },
+  {
+   "slug": "cleaning",
+   "name": "Cleaning products"
+  },
+  {
+   "slug": "spray-paints",
+   "name": "Spray paints"
+  },
+  {
+   "slug": "towels",
+   "name": "Microfibre towels"
+  },
+  {
+   "slug": "wax-polish",
+   "name": "Wax & polish"
+  },
+  {
+   "slug": "coolants",
+   "name": "Coolants & additives"
+  },
+  {
+   "slug": "air-fresheners",
+   "name": "Air fresheners"
+  },
+  {
+   "slug": "car-care-kits",
+   "name": "Car care kits"
+  },
+  {
+   "slug": "accessories",
+   "name": "Detailing accessories"
+  }
+ ],
+ "products": [
+  {
+   "id": "spray-paint-virshen-450ml",
+   "slug": "spray-paint-virshen-450ml",
+   "sku": "AKB-001",
+   "name": "Spray Paint 450ml (Virshen)",
+   "catSlug": "spray-paints",
+   "cat": "Spray paints",
+   "brand": "Virshen",
+   "img": "assets/images/spray-paint.jpg",
+   "images": [
+    "assets/images/spray-paint.jpg"
+   ],
+   "desc": "Quick-drying, easy-to-use spray paint. Available in several colours including white, black, grey, yellow, green and chrome. Confirm colours in stock before ordering.",
+   "moq": 24,
+   "size": "450ml",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 0
+  },
+  {
+   "id": "spray-paint-deramech-450ml",
+   "slug": "spray-paint-deramech-450ml",
+   "sku": "AKB-002",
+   "name": "Spray Paint 450ml (Deramech)",
+   "catSlug": "spray-paints",
+   "cat": "Spray paints",
+   "brand": "Deramech",
+   "img": "assets/images/spray-paint-deramech.jpg",
+   "images": [
+    "assets/images/spray-paint-deramech.jpg"
+   ],
+   "desc": "Fast-drying all-purpose spray paint for interior and exterior use. Confirm colours in stock before ordering.",
+   "moq": 24,
+   "size": "450ml",
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 1
+  },
+  {
+   "id": "auto-under-coating-650ml",
+   "slug": "auto-under-coating-650ml",
+   "sku": "AKB-003",
+   "name": "Auto Under Coating 650ml",
+   "catSlug": "spray-paints",
+   "cat": "Spray paints",
+   "brand": "Deramech",
+   "img": "assets/images/undercoating.jpg",
+   "images": [
+    "assets/images/undercoating.jpg"
+   ],
+   "desc": "Underbody coating that is fast drying and easy to apply. Printed claims: antirust, sound insulation, wear resistance, waterproof.",
+   "moq": null,
+   "size": "650ml",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 2
+  },
+  {
+   "id": "tyre-polish",
+   "slug": "tyre-polish",
+   "sku": "AKB-004",
+   "name": "Tyre Polish",
+   "catSlug": "wax-polish",
+   "cat": "Wax & polish",
+   "brand": "Deramech",
+   "img": "assets/images/tyre-polish.jpg",
+   "images": [
+    "assets/images/tyre-polish.jpg"
+   ],
+   "desc": "Spray tyre polish for a deep shine.",
+   "moq": null,
+   "size": null,
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 3
+  },
+  {
+   "id": "silicone-dashboard-polish-250ml",
+   "slug": "silicone-dashboard-polish-250ml",
+   "sku": "AKB-005",
+   "name": "Silicone Dashboard Polish 250ml",
+   "catSlug": "wax-polish",
+   "cat": "Wax & polish",
+   "brand": "Deramech",
+   "img": "assets/images/dashboard-polish.jpg",
+   "images": [
+    "assets/images/dashboard-polish.jpg"
+   ],
+   "desc": "Silicone polish for dashboards, seats and door panels.",
+   "moq": 24,
+   "size": "250ml",
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 4
+  },
+  {
+   "id": "dashboard-wax-spray",
+   "slug": "dashboard-wax-spray",
+   "sku": "AKB-006",
+   "name": "Dashboard Wax Spray",
+   "catSlug": "wax-polish",
+   "cat": "Wax & polish",
+   "brand": "Virshen",
+   "img": "assets/images/dashboard-wax.jpg",
+   "images": [
+    "assets/images/dashboard-wax.jpg"
+   ],
+   "desc": "Care spray for vinyl, plastic and rubber surfaces.",
+   "moq": null,
+   "size": null,
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 5
+  },
+  {
+   "id": "car-wax-and-cleaner-tin-350ml",
+   "slug": "car-wax-and-cleaner-tin-350ml",
+   "sku": "AKB-007",
+   "name": "Car Wax & Cleaner (Tin) 350ml",
+   "catSlug": "wax-polish",
+   "cat": "Wax & polish",
+   "brand": "Deramech",
+   "img": "assets/images/car-wax-tin.jpg",
+   "images": [
+    "assets/images/car-wax-tin.jpg"
+   ],
+   "desc": "Heavy-duty silicone car wax and cleaner in a tin.",
+   "moq": 24,
+   "size": "350ml",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 6
+  },
+  {
+   "id": "car-wash-wax-1l",
+   "slug": "car-wash-wax-1l",
+   "sku": "AKB-008",
+   "name": "Car Wash Super Concentrate Wash 'n' Wax 1 Litre",
+   "catSlug": "car-wash",
+   "cat": "Car wash products",
+   "brand": null,
+   "img": "assets/images/car-wash-wax.jpg",
+   "images": [
+    "assets/images/car-wash-wax.jpg"
+   ],
+   "desc": "Concentrated one-step wash and wax car shampoo.",
+   "moq": 24,
+   "size": "1 litre",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 7
+  },
+  {
+   "id": "flamingo-wash-wax-shampoo-1l",
+   "slug": "flamingo-wash-wax-shampoo-1l",
+   "sku": "AKB-009",
+   "name": "Flamingo Wash & Wax Car Shampoo 1 Litre",
+   "catSlug": "car-wash",
+   "cat": "Car wash products",
+   "brand": "Flamingo",
+   "img": "assets/images/flamingo-shampoo.jpg",
+   "images": [
+    "assets/images/flamingo-shampoo.jpg"
+   ],
+   "desc": "Ultra-shine car wash and wax shampoo.",
+   "moq": 24,
+   "size": "1 litre",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 8
+  },
+  {
+   "id": "foam-cleaner-multi-purpose-650ml",
+   "slug": "foam-cleaner-multi-purpose-650ml",
+   "sku": "AKB-010",
+   "name": "Multi-Purpose Foam Cleaner 650ml",
+   "catSlug": "cleaning",
+   "cat": "Cleaning products",
+   "brand": null,
+   "img": "assets/images/foam-cleaner.jpg",
+   "images": [
+    "assets/images/foam-cleaner.jpg"
+   ],
+   "desc": "Foam cleaner with brush top for fabric, carpet and upholstery.",
+   "moq": 24,
+   "size": "650ml",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 9
+  },
+  {
+   "id": "radiator-coolant",
+   "slug": "radiator-coolant",
+   "sku": "AKB-011",
+   "name": "Radiator Coolant",
+   "catSlug": "coolants",
+   "cat": "Coolants & additives",
+   "brand": "PP Densa",
+   "img": "assets/images/radiator-coolant.jpg",
+   "images": [
+    "assets/images/radiator-coolant.jpg"
+   ],
+   "desc": "Radiator coolant used in place of plain water to help prevent overheating.",
+   "moq": null,
+   "size": null,
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 10
+  },
+  {
+   "id": "microfibre-towel-40x30",
+   "slug": "microfibre-towel-40x30",
+   "sku": "AKB-012",
+   "name": "Microfibre Towel 40x30",
+   "catSlug": "towels",
+   "cat": "Microfibre towels",
+   "brand": null,
+   "img": "assets/images/microfibre-towel.jpg",
+   "images": [
+    "assets/images/microfibre-towel.jpg"
+   ],
+   "desc": "Everyday microfibre drying and cleaning towel. A larger 60x70 size is also supplied.",
+   "moq": 50,
+   "size": "40x30",
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 11
+  },
+  {
+   "id": "twin-towel-absorbent-microfibre",
+   "slug": "twin-towel-absorbent-microfibre",
+   "sku": "AKB-013",
+   "name": "Absorbent Twin Microfibre Towel",
+   "catSlug": "towels",
+   "cat": "Microfibre towels",
+   "brand": null,
+   "img": "assets/images/twin-towel.jpg",
+   "images": [
+    "assets/images/twin-towel.jpg"
+   ],
+   "desc": "Two-sided absorbent microfibre towel in blue, yellow, purple and green. Sizes such as 40x30, 40x40 and 40x70.",
+   "moq": 50,
+   "size": "Several sizes and weights",
+   "price": null,
+   "stock": null,
+   "featured": true,
+   "created": 12
+  },
+  {
+   "id": "akubee-branded-microfibre-towel",
+   "slug": "akubee-branded-microfibre-towel",
+   "sku": "AKB-014",
+   "name": "AkuBee Branded Microfibre Towel",
+   "catSlug": "towels",
+   "cat": "Microfibre towels",
+   "brand": "AkuBee",
+   "img": "assets/images/towel-branded.jpg",
+   "images": [
+    "assets/images/towel-branded.jpg"
+   ],
+   "desc": "Yellow microfibre towel with black edging and AkuBee branding.",
+   "moq": null,
+   "size": null,
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 13
+  },
+  {
+   "id": "professional-washing-mitt-800g",
+   "slug": "professional-washing-mitt-800g",
+   "sku": "AKB-015",
+   "name": "Professional Washing Mitt / Sponge 800g",
+   "catSlug": "accessories",
+   "cat": "Detailing accessories",
+   "brand": null,
+   "img": "assets/images/wash-mitt.jpg",
+   "images": [
+    "assets/images/wash-mitt.jpg"
+   ],
+   "desc": "Chenille microfibre wash mitt.",
+   "moq": 50,
+   "size": "800g",
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 14
+  },
+  {
+   "id": "ikeda-liquid-air-freshener",
+   "slug": "ikeda-liquid-air-freshener",
+   "sku": "AKB-016",
+   "name": "Ikeda Liquid Air Freshener",
+   "catSlug": "air-fresheners",
+   "cat": "Air fresheners",
+   "brand": "Ikeda",
+   "img": "assets/images/ikeda-scent.jpg",
+   "images": [
+    "assets/images/ikeda-scent.jpg"
+   ],
+   "desc": "Mini liquid air fresheners in several scents.",
+   "moq": null,
+   "size": "Small and big, sold in 12-piece packs",
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 15
+  },
+  {
+   "id": "coscharis-jasmine-car-scent",
+   "slug": "coscharis-jasmine-car-scent",
+   "sku": "AKB-017",
+   "name": "Coscharis Scents Car Air Freshener (Jasmine)",
+   "catSlug": "air-fresheners",
+   "cat": "Air fresheners",
+   "brand": "Coscharis",
+   "img": "assets/images/car-scent.jpg",
+   "images": [
+    "assets/images/car-scent.jpg"
+   ],
+   "desc": "Canned car air freshener, printed 'lasts 60 days'.",
+   "moq": null,
+   "size": null,
+   "price": null,
+   "stock": null,
+   "featured": false,
+   "created": 16
+  }
+ ]
+}
