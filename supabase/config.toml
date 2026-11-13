@@ -1,0 +1,7 @@
+# Webhooks are called by Paystack/Flutterwave, not by a logged-in browser; they authenticate by signature instead.
+[functions.paystack-webhook]
+verify_jwt = false
+[functions.flutterwave-webhook]
+verify_jwt = false
+[functions.payment-verify]
+verify_jwt = false

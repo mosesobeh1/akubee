@@ -1,0 +1,18 @@
+.adm-nav{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.4rem;margin-bottom:.5rem;border-bottom:1px solid var(--line)}
+.adm-nav a{white-space:nowrap;padding:.35rem .8rem;border-radius:99px;background:var(--bg);font-size:.9rem}
+.adm-nav a.on,.chip.on{background:var(--accent);color:#16130c;font-weight:600}
+.demo-bar{background:#b00020;color:#fff;text-align:center;font-size:.8rem;padding:.3rem .5rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem}
+.stat{display:flex;flex-direction:column;gap:.25rem;background:var(--bg);border-radius:12px;padding:.9rem;border:1px solid transparent}
+.stat strong{font-size:1.4rem}.stat[href]:hover{border-color:var(--accent)}
+.tbl-wrap{overflow-x:auto}.table{font-size:.9rem}.table th{white-space:nowrap}.nowrap{white-space:nowrap}
+tr.clk{cursor:pointer}tr.clk:hover td{background:var(--bg)}
+.bdg{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.75rem;background:var(--bg);border:1px solid var(--line);text-transform:capitalize}
+.bdg-paid,.bdg-delivered,.bdg-approved,.bdg-active,.bdg-accepted{background:#d1f0dc;color:#0b4f23;border-color:#b5e3c6}
+.bdg-pending,.bdg-awaiting-payment,.bdg-new,.bdg-unpaid,.bdg-in-review{background:#fff1c9;color:#6b4a00;border-color:#f0dc9d}
+.bdg-cancelled,.bdg-failed,.bdg-rejected,.bdg-suspended,.bdg-archived,.bdg-declined,.bdg-refunded{background:#fadadd;color:#7a0a18;border-color:#efb7bd}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:1rem}
+.modal-box{background:var(--page);color:var(--text);border-radius:12px;max-width:720px;width:100%;padding:1rem;margin-block:1rem}
+.thumb{position:relative;display:inline-block}.thumb img{border-radius:8px;border:1px solid var(--line);background:#fff}
+.thumb button{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;border:0;background:#b00020;color:#fff;line-height:1}
+textarea.form-control{resize:vertical}
