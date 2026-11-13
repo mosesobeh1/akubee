@@ -198,7 +198,7 @@ ${related.length ? `<h2 class="sec-title mt-5">Related products</h2><div class="
 
 const STATES = ["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT Abuja","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara"];
 const field = (n, l, t = "text", x = "") => `<div class="mb-3"><label class="meta" for="f_${n}">${l}</label><input class="form-control" id="f_${n}" name="${n}" type="${t}" ${x}></div>`;
-const notice = m => `<div class="tip mb-3" role="status"><i class="bi bi-info-circle"></i> ${m}</div>`;
+const notice = m => `<div class="notice mb-3" role="status"><i class="bi bi-info-circle"></i> ${m}</div>`;
 
 Pages.checkout = function () {
   document.title = "Checkout | AkuBee Auto Care Limited";
@@ -538,7 +538,37 @@ const Deals = {
   }
 };
 
+// ---------- Motion: header shadow, page fade, scroll-reveal ----------
+const Fx = {
+  io: null, on: false,
+  init() {
+    if (this.on) return; this.on = true;
+    const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.addEventListener("scroll", () => { const h = $(".site-header"); if (h) h.classList.toggle("scrolled", window.scrollY > 8); }, {passive: true});
+    const app = $("#app"); if (!app) return;
+    if (!reduce && "IntersectionObserver" in window) {
+      this.io = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in"); this.io.unobserve(e.target);
+        setTimeout(() => e.target.classList.remove("reveal", "in"), 1300);   // afterwards hover effects work normally
+      }), {threshold: .1, rootMargin: "0px 0px -30px 0px"});
+    }
+    new MutationObserver(() => this.scan()).observe(app, {childList: true});
+    this.scan();
+  },
+  scan() {
+    const app = $("#app"); if (!app || $(".adm-nav")) return;
+    app.classList.remove("page-in"); void app.offsetWidth; app.classList.add("page-in");
+    if (!this.io) return;
+    let i = 0;
+    app.querySelectorAll(".card-p,.cat,.tip,.banner,.finder,.sec-title,.benefits > div,.wholesale-cta").forEach(el => {
+      if (el.classList.contains("reveal")) return;
+      el.style.setProperty("--d", (i++ % 4) * 70 + "ms"); el.classList.add("reveal"); this.io.observe(el);
+    });
+  }
+};
+
 const App = {
-  async boot(page) { Layout.mount(); await Store.load(); try { await Store.loadSettings(); } catch {} try { await Store.loadWholesale(); } catch {} if (Object.keys(Store.settings).length) Layout.mount(); Layout.fill(); Cart.render(); (Pages[page || document.body.dataset.page] || (() => {}))(); }
+  async boot(page) { Layout.mount(); await Store.load(); try { await Store.loadSettings(); } catch {} try { await Store.loadWholesale(); } catch {} if (Object.keys(Store.settings).length) Layout.mount(); Layout.fill(); Cart.render(); (Pages[page || document.body.dataset.page] || (() => {}))(); Fx.init(); }
 };
 if (!window.PREVIEW) document.addEventListener("DOMContentLoaded", () => App.boot());

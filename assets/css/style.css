@@ -15,7 +15,7 @@ a{color:inherit;text-decoration:none}
 .search .form-control{min-width:0}
 html,body{overflow-x:hidden}
 .offcanvas{max-width:85vw}
-@media(min-width:768px){.hide-mobile{display:inline-block}.search{order:0;flex:1 1 0;max-width:560px}.hdr-actions{margin-left:0}}
+@media(min-width:768px){.hide-mobile{display:inline-block}.search{order:1;flex:1 1 0;max-width:640px}.hdr-actions{order:2;margin-left:auto}}
 .search .form-control{border-radius:8px 0 0 8px}
 .search .btn{border-radius:0 8px 8px 0}
 .badge-count{position:absolute;top:-6px;right:-10px;background:var(--accent);font-size:.65rem;border-radius:99px;padding:1px 6px;font-weight:700}
@@ -82,3 +82,33 @@ html,body{overflow-x:hidden}
 .card-p{position:relative}.wish{position:absolute;top:8px;right:8px;z-index:2;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center}
 .wish.on{color:#d6204a;border-color:#d6204a}.cols2{columns:2}.cols2 li{margin-bottom:.3rem}.info details{border-bottom:1px solid var(--line);padding:.6rem 0}.info summary{cursor:pointer;font-weight:600}.info ul{padding-left:1.2rem}
 .deal{background:#d6204a;color:#fff;border-radius:6px;font-size:.72rem;padding:1px 6px;font-weight:700}.cd{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}.deals .card-p{color:var(--text)}.deals .meta{color:var(--muted)}
+
+.notice{background:var(--bg);border-radius:12px;padding:.9rem 1.2rem}
+/* Motion and hover effects */
+html{scroll-behavior:smooth}
+.site-header{transition:box-shadow .3s ease}.site-header.scrolled{box-shadow:0 4px 16px rgba(0,0,0,.14)}
+.page-in{animation:pageIn .45s ease both}@keyframes pageIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0ms)}.reveal.in{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.banner.main .banner-text>*{animation:rise .7s ease both}.banner.main .banner-text>:nth-child(2){animation-delay:.12s}.banner.main .banner-text>:nth-child(3){animation-delay:.24s}.banner.main .banner-text>:nth-child(4){animation-delay:.36s}
+.btn{transition:transform .18s ease,box-shadow .18s ease,background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.18)}.btn:active{transform:none;box-shadow:none}.btn:disabled,.btn.disabled{transform:none;box-shadow:none}
+.card-p{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.card-p:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(0,0,0,.14);border-color:var(--accent)}
+.card-p img{transition:transform .45s ease}.card-p:hover img{transform:scale(1.07)}
+.card-p h3 a{background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 2px no-repeat;transition:background-size .3s ease}.card-p h3 a:hover{background-size:100% 2px}
+.wish{transition:transform .2s ease,color .2s ease,border-color .2s ease}.wish:hover{transform:scale(1.15);color:#d6204a;border-color:#d6204a}
+.banner{transition:box-shadow .3s ease}.banner:hover{box-shadow:0 16px 34px rgba(0,0,0,.22)}.banner img{transition:transform .6s ease}.banner:hover img{transform:scale(1.05)}
+.cat{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background-color .25s ease}.cat:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(0,0,0,.12)}
+.cat i{display:inline-block;transition:transform .3s ease}.cat:hover i{transform:scale(1.25) rotate(-6deg)}
+article.tip{transition:transform .25s ease,box-shadow .25s ease}article.tip:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.1)}
+.benefits i{display:inline-block;transition:transform .3s ease}.benefits>div:hover i{transform:translateY(-4px) scale(1.15)}
+.catbar a{position:relative;transition:color .2s ease}.catbar a::after{content:"";position:absolute;left:0;bottom:4px;height:2px;width:0;background:var(--accent);transition:width .25s ease}.catbar a:hover::after{width:100%}
+.hdr-actions a,.hdr-actions button{transition:transform .2s ease,color .2s ease}.hdr-actions a:hover,.hdr-actions button:hover{transform:translateY(-2px) scale(1.12);color:var(--accent-d)}
+.chip{transition:transform .2s ease,background-color .2s ease}.chip:hover{transform:translateY(-2px)}
+.fbtn{transition:transform .2s ease,background-color .2s ease,color .2s ease}.fbtn:hover{transform:translateY(-3px)}
+.soc{transition:transform .25s ease,background-color .25s ease}.soc:hover{transform:translateY(-3px) rotate(8deg)}
+.site-footer a{transition:color .2s ease}.site-footer a:hover{color:var(--accent)}
+.float-wa{transition:transform .2s ease;animation:pulse 2.6s ease-out infinite}.float-wa:hover{transform:scale(1.1)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5),0 4px 12px rgba(0,0,0,.3)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0),0 4px 12px rgba(0,0,0,.3)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 4px 12px rgba(0,0,0,.3)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.page-in,.banner.main .banner-text>*,.float-wa{animation:none}.btn:hover,.card-p:hover,.cat:hover,article.tip:hover{transform:none}}
