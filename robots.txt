@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 Allow: /
-Sitemap: https://akubee.pages.dev/sitemap.xml
+Sitemap: https://YOUR-DOMAIN/sitemap.xml

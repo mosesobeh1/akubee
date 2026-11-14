@@ -40,6 +40,7 @@ const Store = {
     }
   },
   get: slug => Store.all.find(p => p.slug === slug),
+  byId: id => Store.all.find(p => p.id === id) || Store.all.find(p => p.slug === id),   // slug fallback for carts saved by older versions
   search(list, q) {
     const t = (q || "").toLowerCase().split(/\s+/).filter(Boolean);
     return list.filter(p => { const h = [p.name, p.cat, p.brand, p.desc, p.sku].join(" ").toLowerCase(); return t.every(w => h.includes(w)); });
@@ -55,12 +56,21 @@ const Store = {
 const Cart = {
   items: (() => { try { return JSON.parse(localStorage.getItem("cart") || "[]"); } catch { return []; } })(),
   save() { try { localStorage.setItem("cart", JSON.stringify(this.items)); } catch {} this.render(); },
-  add(id, n = 1) { const r = this.items.find(i => i.id === id); const p = Store.get(id), min = Store.wholesale && p?.moq ? p.moq : 1; r ? r.qty += n : this.items.push({id, qty: Math.max(n, min)}); this.save(); },
-  change(id, d) { const r = this.items.find(i => i.id === id); if (!r) return; const p = Store.get(id), min = Store.wholesale && p?.moq ? p.moq : 1; if (r.qty + d < min) { if (d < 0) this.items = this.items.filter(i => i !== r); } else r.qty += d; this.save(); },
+  add(id, n = 1) { const r = this.items.find(i => i.id === id); const p = Store.byId(id), min = Store.wholesale && p?.moq ? p.moq : 1; r ? r.qty += n : this.items.push({id, qty: Math.max(n, min)}); this.save(); },
+  change(id, d) { const r = this.items.find(i => i.id === id); if (!r) return; const p = Store.byId(id), min = Store.wholesale && p?.moq ? p.moq : 1; if (r.qty + d < min) { if (d < 0) this.items = this.items.filter(i => i !== r); } else r.qty += d; this.save(); },
+  // Keep stored ids equal to the product's real id, merge duplicates, drop products that no longer exist.
+  normalize() {
+    if (!Store.all.length) return;
+    const m = new Map();
+    this.items.forEach(i => { const p = Store.byId(i.id); if (p) m.set(p.id, (m.get(p.id) || 0) + i.qty); });
+    const next = [...m].map(([id, qty]) => ({id, qty}));
+    if (JSON.stringify(next) !== JSON.stringify(this.items)) { this.items = next; try { localStorage.setItem("cart", JSON.stringify(next)); } catch {} }
+  },
   render() {
     const cnt = $("#cartCount"), box = $("#cartItems"), btn = $("#waOrder"); if (!box) return;
-    cnt.textContent = this.items.reduce((n, i) => n + i.qty, 0);
-    const rows = this.items.map(i => ({p: Store.get(i.id), qty: i.qty})).filter(r => r.p);
+    this.normalize();
+    const rows = this.items.map(i => ({p: Store.byId(i.id), qty: i.qty})).filter(r => r.p);
+    cnt.textContent = rows.reduce((n, r) => n + r.qty, 0);
     btn.classList.toggle("disabled", !rows.length);
     if (!rows.length) { box.innerHTML = "<p class='text-muted'>Your cart is empty. Add a product to get started.</p>"; return; }
     box.innerHTML = rows.map(({p, qty}) => `<div class="d-flex align-items-center gap-2 mb-3"><img src="${esc(p.img)}" alt="" width="48" height="48" style="object-fit:contain">
@@ -209,7 +219,7 @@ Pages.checkout = function () {
     Pay.mount(done);
     return;
   }
-  const rows = Cart.items.map(i => ({p: Store.get(i.id), qty: i.qty})).filter(r => r.p);
+  Cart.normalize(); const rows = Cart.items.map(i => ({p: Store.byId(i.id), qty: i.qty})).filter(r => r.p);
   if (!rows.length) { $("#app").innerHTML = `<div class="container py-5"><h1 class="sec-title">Your cart is empty</h1><a class="btn btn-accent" href="shop.html">Browse products</a></div>`; return; }
   const priced = rows.every(r => Store.unit(r.p, r.qty) != null);
   $("#app").innerHTML = `<div class="container py-4"><h1 class="sec-title">Checkout</h1><div class="row g-4"><div class="col-md-7">
@@ -251,17 +261,21 @@ Pages.login = async function () {
   document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => tab(b.dataset.tab));
   if (!Store.sb) return;
   const sb = Store.sb, msg = $("#msg");
+  if (Store.param("confirmed")) msg.textContent = "Email confirmed. Please log in.";
   sb.auth.onAuthStateChange(ev => { if (ev === "PASSWORD_RECOVERY") tab("np"); });
   const {data: s} = await sb.auth.getSession(); if (s.session && !location.hash.includes("type=recovery")) return go("account.html");
   document.querySelectorAll("[data-f]").forEach(form => form.addEventListener("submit", async e => {
     e.preventDefault(); const v = Object.fromEntries(new FormData(form)); msg.textContent = "Please wait…"; let r;
     if (form.dataset.f === "in") r = await sb.auth.signInWithPassword({email: v.email, password: v.password});
-    if (form.dataset.f === "up") r = await sb.auth.signUp({email: v.email, password: v.password, options: {data: {full_name: v.full_name}}});
+    if (form.dataset.f === "up") r = await sb.auth.signUp({email: v.email, password: v.password, options: {data: {full_name: v.full_name}, emailRedirectTo: location.origin + "/login.html?confirmed=1"}});
     if (form.dataset.f === "rs") r = await sb.auth.resetPasswordForEmail(v.email, {redirectTo: location.origin + "/login.html"});
     if (form.dataset.f === "np") r = await sb.auth.updateUser({password: v.password});
     if (r.error) { msg.textContent = "That did not work: " + r.error.message; return; }
     if (form.dataset.f === "rs") msg.textContent = "If that email has an account, a reset link is on its way.";
-    else if (form.dataset.f === "up" && !r.data.session) msg.textContent = "Account created. Check your email to confirm it, then log in.";
+    else if (form.dataset.f === "up" && !r.data.session) {
+      tab("in"); const lf = document.querySelector("[data-f=in] [name=email]"); if (lf) lf.value = v.email;
+      msg.className = "meta text-success"; msg.textContent = "Account created. We sent a confirmation link to " + v.email + ". Open it, then log in below.";
+    }
     else go("account.html");
   }));
 };
@@ -549,10 +563,13 @@ const Fx = {
     if (!reduce && "IntersectionObserver" in window) {
       this.io = new IntersectionObserver(es => es.forEach(e => {
         if (!e.isIntersecting) return;
+        this.fired = true;
         e.target.classList.add("in"); this.io.unobserve(e.target);
         setTimeout(() => e.target.classList.remove("reveal", "in"), 1300);   // afterwards hover effects work normally
       }), {threshold: .1, rootMargin: "0px 0px -30px 0px"});
     }
+    // Safety net: if the observer never fires (some mobile browsers), show everything normally.
+    setTimeout(() => { if (this.io && !this.fired) { this.io.disconnect(); this.io = null; document.querySelectorAll(".reveal").forEach(el => el.classList.remove("reveal")); } }, 2500);
     new MutationObserver(() => this.scan()).observe(app, {childList: true});
     this.scan();
   },
